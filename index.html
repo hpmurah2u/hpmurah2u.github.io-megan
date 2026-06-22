@@ -1,84 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered MP4 Video Player with Subtitles</title>
-    <style>
-        /* Center the content horizontally and vertically */
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .video-container {
-            width: 80%; /* Adjust the width of the container */
-        }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        video {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
-        select {
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Live Channels</title>
+  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#111; color:#fff; text-align:center; }
+    .channel-list { display:flex; flex-wrap:wrap; justify-content:center; margin-top:20px; }
+    .channel { margin:10px; cursor:pointer; }
+    .channel img { width:120px; height:auto; border:2px solid #444; border-radius:8px; }
+    .channel-name { margin-top:5px; font-size:14px; }
+    #player-container { max-width:800px; margin:20px auto; }
+  </style>
 </head>
 <body>
+  <h1>Live FIFA WorldCUP 2026</h1>
+  <div id="player-container">
+    <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450"></video>
+  </div>
 
-    <div class="video-container">
-        <h1>M3GAN (2022)</h1>
-        <video id="videoPlayer" controls>
-            <source src="https://ia801605.us.archive.org/0/items/m-3-gan.-2022.720p/M3GAN.2022.720p.mp4" type="video/mp4"> <!-- Replace with your MP4 file -->
-            Your browser does not support the video tag.
-            <track kind="subtitles" label="English" src="https://raw.githubusercontent.com/hpmurah2u/pejal/PEJAL/M3gan.vtt" srclang="en" default>
-            <track kind="subtitles" label="Malay" src="https://raw.githubusercontent.com/hpmurah2u/pejal/PEJAL/M3gan.malaysub.vtt" srclang="ms">
-        </video>
-
-        <!-- Subtitle selection dropdown -->
-        <label for="subtitleSelect">Select Subtitles:</label>
-        <select id="subtitleSelect">
-            <option value="">None</option>
-            <option value="en">English</option>
-            <option value="ms">Malay</option>
-        </select>
+  <div class="channel-list">
+    <div class="channel" onclick="playChannel('https://box.djdoolky76.net/stream/udptvus/fox4k/master.m3u8?u=gratisph&p=b7594b1f3fc4330368923027acec015c59213e4ab57d0b52232b5b0f207b8703')">
+      <img src="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/fox-us.png?raw=true" alt="FOX 4K">
+      <div class="channel-name">FOX 4K</div>
     </div>
+    <div class="channel" onclick="playChannel('https://box.djdoolky76.net/stream/udptv/foxfifafhd/master.m3u8?u=gratisph&p=b7594b1f3fc4330368923027acec015c59213e4ab57d0b52232b5b0f207b8703')">
+      <img src="https://i.imgur.com/GBBCLJo.png" alt="FOX FIFA FHD">
+      <div class="channel-name">FOX | FIFA FHD</div>
+    </div>
+    <div class="channel" onclick="playChannel('https://box.djdoolky76.net/stream/udptvus/fox11/master.m3u8?u=gratisph&p=b7594b1f3fc4330368923027acec015c59213e4ab57d0b52232b5b0f207b8703')">
+      <img src="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/us-local/fox-11-kttv-us.png?raw=true" alt="FOX11">
+      <div class="channel-name">FOX11</div>
+    </div>
+    <div class="channel" onclick="playChannel('https://box.djdoolky76.net/stream/udptvus/fs1/master.m3u8?u=gratisph&p=b7594b1f3fc4330368923027acec015c59213e4ab57d0b52232b5b0f207b8703')">
+      <img src="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-sports-1-us.png" alt="FS1">
+      <div class="channel-name">FS1</div>
+    </div>
+    <div class="channel" onclick="playChannel('https://box.djdoolky76.net/stream/udptvus/fs2/master.m3u8?u=gratisph&p=b7594b1f3fc4330368923027acec015c59213e4ab57d0b52232b5b0f207b8703')">
+      <img src="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/fox-sports-2-us.png" alt="FS2">
+      <div class="channel-name">FS2</div>
+    </div>
+  </div>
 
-    <script>
-        // Video player and subtitle selection
-        const video = document.getElementById('videoPlayer');
-        const subtitleSelect = document.getElementById('subtitleSelect');
-
-        // Function to change subtitle track based on selection
-        subtitleSelect.addEventListener('change', function() {
-            const tracks = video.textTracks;
-            const selectedLanguage = subtitleSelect.value;
-
-            // Hide all tracks
-            for (let i = 0; i < tracks.length; i++) {
-                tracks[i].mode = 'hidden';
-            }
-
-            // Show the selected track
-            if (selectedLanguage) {
-                for (let i = 0; i < tracks.length; i++) {
-                    if (tracks[i].language === selectedLanguage) {
-                        tracks[i].mode = 'showing';
-                        break;
-                    }
-                }
-            }
-        });
-    </script>
-
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script>
+    var player = videojs('videoPlayer');
+    function playChannel(url) {
+      player.src({ src: url, type: 'application/x-mpegURL' });
+      player.play();
+    }
+  </script>
 </body>
 </html>
